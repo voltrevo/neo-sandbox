@@ -4,8 +4,8 @@ Neovim-based development environment.
 
 ## Build
 
-First copy `.gitconfig.example` to `.gitconfig` and edit the `name` and `email`
-fields.
+First copy `.gitconfig.template` to `.gitconfig` and edit the `name` and
+`email` fields.
 
 ```sh
 docker build . -t neo
