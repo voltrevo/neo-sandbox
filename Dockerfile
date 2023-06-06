@@ -47,15 +47,28 @@ RUN \
   curl -fLo /root/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-ADD .config /root/.config
 ADD .zshrc .gitconfig /root/.
-
 RUN cat zsh-additions >>/root/.zshrc
-
-RUN nvim +PlugInstall +qall
 
 ENV TERM=xterm-256color
 
-WORKDIR /root
+RUN \
+  curl -LO https://bootstrap.pypa.io/get-pip.py && \
+  python3 get-pip.py
 
+RUN \
+  curl -L https://sh.rustup.rs -o install.sh && \
+  chmod +x install.sh && \
+  ./install.sh -y
+
+ENV LV_BRANCH='release-1.3/neovim-0.9'
+
+RUN \
+  curl -LO \
+    https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh && \
+  ./install.sh
+
+RUN echo 'export PATH="$PATH:$HOME/.local/bin"' >>/root/.zshrc
+
+WORKDIR /root
 CMD zsh

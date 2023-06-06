@@ -104,4 +104,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 HISTSIZE=SAVEHIST=100000
-alias v=nvim
+alias v=lvim
